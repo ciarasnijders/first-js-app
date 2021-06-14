@@ -24,8 +24,8 @@ let pokemonList = [
 for (let i = 0; i < pokemonList.length; i++) {
     let partial = `${pokemonList[i].name} (height: ${pokemonList[i].height}) `;
     if (pokemonList[i].height >= 7){ 
-        document.write(`${partial} - Wow, that’s big! <br>`);
+        document.write(`<p class="pokemon-list__item special">${partial} - Wow, that’s big! </p>`);
     } else {
-        document.write(`${partial} <br>`);
+        document.write(`<p class="pokemon-list__item special">${partial} </p>`);
     }
 };
