@@ -20,16 +20,7 @@ let pokemonList = [
     }
 ];
 
-//a for loop that iterates over each item in pokemonList
-for (let i = 0; i < pokemonList.length; i++) {
-    let partial = `${pokemonList[i].name} (height: ${pokemonList[i].height}) `;
-    if (pokemonList[i].height >= 7){ 
-        document.write(`<p class="pokemon-list__item special">${partial} - Wow, that’s big! </p>`);
-    } else {
-        document.write(`<p class="pokemon-list__item special">${partial} </p>`);
-    }
-};
-
+//a forEach loop that iterates over each item in pokemonList
 function pokemonLoopFunction(pokemon) {
     let partial = `${pokemonList[i].name} (height: ${pokemonList[i].height}) `;
     if (pokemon.height >= 7){
