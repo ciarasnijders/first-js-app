@@ -29,3 +29,13 @@ for (let i = 0; i < pokemonList.length; i++) {
         document.write(`<p class="pokemon-list__item special">${partial} </p>`);
     }
 };
+
+function pokemonLoopFunction(pokemon) {
+    let partial = `${pokemonList[i].name} (height: ${pokemonList[i].height}) `;
+    if (pokemon.height >= 7){
+        document.write(`<p class="pokemon-list__item special">${partial} - Wow, that’s big! </p>`);
+    } else {
+        document.write(`<p class="pokemon-list__item special">${partial} </p>`);
+    }
+  }
+  pokemonList.forEach(pokemonLoopFunction);
