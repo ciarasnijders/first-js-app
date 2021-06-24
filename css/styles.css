@@ -22,6 +22,11 @@ body {
     line-height: 1.6;
 }
 
+.heading {
+    display: flex;
+    justify-content: center;
+}
+
 .pokemon-list {
     list-style-type: none;
     margin: 0;
