@@ -26,27 +26,46 @@ let pokemonRepository = (function() {
     }
 
     function add(pokemon){
-        if (typeof pokemon === "object"){
+        if (typeof pokemon === 'object'){
             pokemonList.push(pokemon)
         }
     }
 
+    function addListItem(pokemon){
+        let ulSelector = document.querySelector('.pokemon-list');
+        let listItem = document.createElement('li');
+        let button = document.createElement('button');
+        
+        addClickEvent(button, pokemon);
+        
+        button.innerText = pokemon.name;
+        button.classList.add('pokemon-button');
+        listItem.appendChild(button);
+        ulSelector.appendChild(listItem);
+    };
+
+    function showDetails(pokemon){
+        console.log(pokemon); 
+    }
+
+    function addClickEvent(button, pokemon){
+        button.addEventListener('click',function () {
+            showDetails(pokemon)
+        });
+    }
+
     return {
         getAll: getAll,
-        add: add
+        add: add,
+        addListItem: addListItem
     };
 
 }) ();
 
-//a forEach() loop that iterates over each item in pokemonList
+
 function pokemonLoopFunction(pokemon) {
-    let partial = `${pokemon.name} (height: ${pokemon.height}) `;
+    pokemonRepository.addListItem(pokemon);
+}
 
-    if (pokemon.height >= 7){
-        document.write(`<p class="pokemon-list__item special">${partial} - Wow, that’s big! </p>`);
-    } else {
-        document.write(`<p class="pokemon-list__item special">${partial} </p>`);
-    }
-    }
 
-    pokemonRepository.getAll().forEach(pokemonLoopFunction);
+pokemonRepository.getAll().forEach(pokemonLoopFunction);
