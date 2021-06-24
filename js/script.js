@@ -27,7 +27,7 @@ let pokemonRepository = (function() {
 
     function add(pokemon){
         if (typeof pokemon === "object" && JSON.stringify(Object.keys(pokemon)) === JSON.stringify(['name', 'height', 'colors', 'type'])) {
-            pokemonList.push(pokemon)
+                pokemonList.push(pokemon)
         }
     }
 
@@ -54,10 +54,17 @@ let pokemonRepository = (function() {
         });
     }
 
+    function findByName(name) {
+        return pokemonList.filter(function(pokemon) {
+            return pokemon.name === name
+        })
+    }
+
     return {
         getAll: getAll,
         add: add,
-        addListItem: addListItem
+        addListItem: addListItem,
+        findByName: findByName
     };
 
 }) ();
