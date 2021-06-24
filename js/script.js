@@ -26,7 +26,7 @@ let pokemonRepository = (function() {
     }
 
     function add(pokemon){
-        if (typeof pokemon === 'object'){
+        if (typeof pokemon === "object" && JSON.stringify(Object.keys(pokemon)) === JSON.stringify(['name', 'height', 'colors', 'type'])) {
             pokemonList.push(pokemon)
         }
     }
