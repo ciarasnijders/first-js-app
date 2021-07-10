@@ -46,10 +46,12 @@ let pokemonRepository = (function() {
     }
 
     function loadList() {
+        showLoadingMessage()
         return fetch(apiUrl).then(
             (response) => response.json()
         ).then(
             function (json) {
+                hideLoadingMessage();
                 json.results.forEach(function (item) {
                     let pokemon = {
                         name: item.name,
@@ -60,24 +62,39 @@ let pokemonRepository = (function() {
             }
         ).catch(
             function (e) {
+                hideLoadingMessage();
             console.error(e);
         })
       }
     
     function loadDetails(item) {
+        showLoadingMessage();
         let url = item.detailsUrl;
         return fetch(url).then(function (response) {
             
             return response.json();
             }).then(function (details) {
+                //sometimes response.json can take longer so hiding the loading message here
+                hideLoadingMessage()
             // Now we add the details to the item
             item.imageUrl = details.sprites.front_default;
             item.height = details.height;
             item.types = details.types;
             }).catch(function (e) {
+                hideLoadingMessage();
             console.error(e);
             });
     }
+
+    function showLoadingMessage() {
+        let message = document.querySelector('.loading-message-container');
+        message.innerText = "Loading ...";
+    };
+
+    function hideLoadingMessage() {
+        let message = document.querySelector('.loading-message-container');
+        message.innerText = "";
+    };
 
     return {
         getAll: getAll,
