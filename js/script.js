@@ -1,34 +1,15 @@
 let pokemonRepository = (function() {
     //This array contains Pokémon data to display in the application.
-    let pokemonList = [
-        {
-            name:"Pikachu",
-            height: 4,
-            colors: ["yellow", "black", "red"],
-            type: ["electric"],
-        },
-        {
-            name:"Bulbasaur",
-            height: 7,
-            color: ["blue", "green", "turquoise"],
-            type: ["grass", "poison"],
-        },
-        {
-            name:"Charmander",
-            height: 6,
-            color: ["orange", "yellow", "red"],
-            type: ["fire"],
-        }
-    ];
+    let pokemonList = [];
 
-    let apiUrl = 'https://pokeapi.co/api/v2/pokemon/?limit=150';
+    let apiUrl = 'https://pokeapi.co/api/v2/pokemon/?limit=20';
 
     function getAll(){
         return pokemonList;
     }
 
     function add(pokemon){
-        if (typeof pokemon === "object" && JSON.stringify(Object.keys(pokemon)) === JSON.stringify(['name', 'height', 'colors', 'type'])) {
+        if (typeof pokemon === "object" && JSON.stringify(Object.keys(pokemon)) === JSON.stringify(['name', 'detailsUrl'])) {
                 pokemonList.push(pokemon)
         }
     }
