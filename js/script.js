@@ -92,6 +92,12 @@ let pokemonRepository = (function() {
 }) ();
 
 
-function pokemonLoopFunction(pokemon) {
-    pokemonRepository.addListItem(pokemon);
-}
+function pokemonLoopFunction() {
+    pokemonRepository.loadList().then(() => {
+        pokemonRepository.getAll().forEach((pokemon) => {
+            pokemonRepository.addListItem(pokemon);
+        })
+    })
+};
+
+pokemonLoopFunction()
