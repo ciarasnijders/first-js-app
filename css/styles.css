@@ -63,6 +63,10 @@ body {
     margin-top: 12%;
 }
 
+img {
+    height: 150px;
+}
+
 #modal-container {
     display: none;
 }
@@ -123,5 +127,5 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-left: 42%;
+    margin-left: 40%;
 }
