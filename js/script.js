@@ -112,16 +112,22 @@ let pokemonRepository = (function() {
         imageElement.src = imageUrl;
 
         let modal = document.querySelector('#modal-container');
-        modal.addEventListener('pointermove', (event) => {
-            const currentPokemon = pokemonList.find(pokemon => pokemon.name === name)
-            let currentPokemonIndex = pokemonList.indexOf(currentPokemon)
-            if (currentPokemonIndex + 1 === pokemonList.length) {
-                currentPokemonIndex = -1
+
+        // Only add pointermove listener for mobile devices
+        let widthMatch = window.matchMedia("(max-width: 500px)");
+        if (widthMatch.matches) {
+                modal.addEventListener('pointermove', (event) => {
+                    const currentPokemon = pokemonList.find(pokemon => pokemon.name === name)
+                    let currentPokemonIndex = pokemonList.indexOf(currentPokemon)
+                    if (currentPokemonIndex + 1 === pokemonList.length) {
+                        currentPokemonIndex = -1
+                    }
+                    const nextPokemon = pokemonList[currentPokemonIndex + 1]
+                    showDetails(nextPokemon)
+                });
             }
-            const nextPokemon = pokemonList[currentPokemonIndex + 1]
-            showDetails(nextPokemon)
-        });
-    }
+        }
+
 
 
     function hideModal () {
