@@ -18,20 +18,21 @@ let pokemonRepository = (function () {
     }
   }
 
-  function addListItem(pokemon) {
-    let divSelector = document.querySelector('#pokemon-list');
-    let button = document.createElement('button');
-    button.classList.add('list-group-item', 'list-group-item-action');
-    button.setAttribute('type', 'button');
-    button.setAttribute('data-toggle', 'modal');
-    button.setAttribute('data-target', '#Modal');
+  //displays a list of Pokemons (it is reusable)
+  function displayPokemonsList(pokemons) {
+    const divSelector = document.querySelector('#pokemon-list');
+      const list = pokemons.map((pokemon) => {
+          return(
+          `<button class="list-group-item list-group-item-action pokemon-buttons" id=${pokemon.name} type="button" data-toggle="modal" data-target="#Modal">${pokemon.name}</button>`
+      )});
+      divSelector.innerHTML = list.join('');
 
-    addClickEvent(button, pokemon);
-
-    button.innerText = pokemon.name;
-    // button.classList.add('pokemon-button'); adds styling
-    divSelector.appendChild(button);
+      pokemons.forEach((pokemon) => {
+          const buttonItem = document.querySelector(`#${pokemon.name}`)
+          addClickEvent(buttonItem, pokemon);
+      })
   }
+  
 
   function showDetails(pokemon) {
     loadDetails(pokemon).then(function () {
