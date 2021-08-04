@@ -37,3 +37,41 @@ Features and Requirements:
         Nice to Have:
             - The app should show loading indicators while loading data.
             - The app should handle errors (such as trying to load data while offline) and show user-friendly error messages.
+
+Process:
+Step 1: 
+● Set up the general outline of the app.
+
+Steps 2 and 3: 
+● Set up a general dataset for the application and display it in a very basic way to the user. 
+
+Step 4 and 5: 
+● Implement a forEach loop to print details on each item in your app’s repository.
+● Wrap repository in an IIFE to avoid accidentally accessing the global state.
+● Update your forEach loops to work within the IIFE.
+
+Step 6:
+● Render static data from the data repository on the page.
+● Add basic styling to the app.
+● Make sure your application is accessible.
+
+Step 7:
+● Load data from an external API via fetch.
+ 
+Step 8: 
+● Add complex UI patterns to the app --> show data details in a modal.
+
+Step 9: 
+● Use Bootstrap to create a clean and usable design for the app. 
+
+Step 10: 
+● Ensure app works in all necessary browsers.
+● Add ESLint rules and ensure code passes the validation test.
+● Make final adjustments to app such as styling or usability improvements.
+
+
+Technologies used:
+- JavaScript
+- CSS
+- JQuery 
+- VSCode extensions: ESLinter and Prettier 
