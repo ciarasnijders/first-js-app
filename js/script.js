@@ -132,41 +132,29 @@ let pokemonRepository = (function () {
     }
   }
 
-  function hideModal() {
-    let modalContainer = document.querySelector('#modal-container');
-    modalContainer.classList.remove('is-visible');
-    console.log({ modalContainer });
-  }
-
-  window.addEventListener('keydown', (e) => {
-    let modalContainer = document.querySelector('#modal-container');
-    if (e.key === 'Escape' && modalContainer.classList.contains('is-visible')) {
-      hideModal();
-    }
-    modalContainer.addEventListener('click', (e) => {
-      // Only close if the user clicks directly on the overlay
-      let target = e.target;
-      if (target === modalContainer) {
-        hideModal();
-      }
+  //creates a search bar
+  const searchBar = document.getElementById('searchBar');
+  searchBar.addEventListener('keyup', (e) => {
+    const searchString = e.target.value.toLowerCase();
+    const filteredPokemons = pokemonList.filter((pokemon) => pokemon.name.toLowerCase().includes(searchString));
+    displayPokemonsList(filteredPokemons)
     });
-  });
+
 
   return {
     getAll: getAll,
     add: add,
-    addListItem: addListItem,
     findByName: findByName,
     loadList: loadList,
     loadDetails: loadDetails,
+    displayPokemonsList: displayPokemonsList
   };
 })();
 
 function pokemonLoopFunction() {
   pokemonRepository.loadList().then(() => {
-    pokemonRepository.getAll().forEach((pokemon) => {
-      pokemonRepository.addListItem(pokemon);
-    });
+    const pokemonList = pokemonRepository.getAll();
+    pokemonRepository.displayPokemonsList(pokemonList);
   });
 }
 
