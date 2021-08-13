@@ -36,7 +36,7 @@ const pokemonRepository = (function () {
 
   function showDetails (pokemon) {
     loadDetails(pokemon).then(function () {
-      showModal(pokemon.name, pokemon.height, pokemon.imageUrl)
+      showModal(pokemon.name, pokemon.height, pokemon.imageUrl, pokemon.weight, pokemon.types)
     })
   }
 
@@ -87,6 +87,8 @@ const pokemonRepository = (function () {
         item.imageUrl = details.sprites.front_default
         item.height = details.height
         item.types = details.types
+        item.weight = details.weight
+        item.types = details.types.map((item) => ` ${item.type.name}`)
       })
       .catch(function (e) {
         hideLoadingMessage()
@@ -104,12 +106,19 @@ const pokemonRepository = (function () {
     message.innerText = ''
   }
 
-  function showModal (name, height, imageUrl) {
+  function showModal (name, height, imageUrl, weight, types) {
+    console.log({ types })
     const modalTitle = document.querySelector('#ModalTitle')
     modalTitle.innerText = name
 
     const contentElement = document.querySelector('#pokemon-height')
     contentElement.innerText = `height: ${height}`
+
+    const contentElementWeight = document.querySelector('#pokemon-weight')
+    contentElementWeight.innerText = `weight: ${weight}`
+
+    const contentElementTypes = document.querySelector('#pokemon-types')
+    contentElementTypes.innerText = `type(s): ${types}`
 
     const imageElement = document.querySelector('#pokemon-img')
     imageElement.src = imageUrl
@@ -142,12 +151,10 @@ const pokemonRepository = (function () {
   })
 
   return {
-    getAll: getAll,
-    add: add,
-    findByName: findByName,
-    loadList: loadList,
-    loadDetails: loadDetails,
-    displayPokemonsList: displayPokemonsList
+    getAll,
+    loadDetails,
+    displayPokemonsList,
+    loadList
   }
 })()
 
